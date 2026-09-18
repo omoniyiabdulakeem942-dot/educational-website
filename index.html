@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find local study partners, share skills, and learn together.">
+    <title>Study Circle | Local Skill-Share Board</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="notificationBanner" class="notification" role="status" aria-live="polite"></div>
+
+    <header class="site-header">
+        <a class="brand" href="index.html" aria-label="Study Circle home">
+            <span class="brand-mark" aria-hidden="true">✦</span>
+            <span>Study Circle</span>
+        </a>
+`        <nav class="site-nav" aria-label="Main navigation">
+            <a href="#board">Explore</a>
+            <button class="button button-quiet" type="button" data-open-login>Log in</button>
+            <button class="button button-primary button-small" type="button" data-scroll-to-form>Share a skill <span aria-hidden="true">↗</span></button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="eyebrow-dot"></span> Your neighborhood learning network</p>
+                <h1 id="hero-title">Learn openly.<br><em>Grow together.</em></h1>
+                <p class="hero-text">A friendly place to find study partners, exchange skills, and make progress together.</p>
+                <div class="hero-actions">
+                    <button class="button button-primary" type="button" data-scroll-to-form>Post a notice <span aria-hidden="true">↗</span></button>
+                    <a class="text-link" href="#board">Browse the board <span aria-hidden="true">↓</span></a>
+                </div>
+            </div>
+            <div class="hero-note" aria-label="Community note">
+                <span class="note-icon" aria-hidden="true">✦</span>
+                <p>Small steps become<br><strong>shared momentum.</strong></p>
+                <span class="note-line" aria-hidden="true"></span>
+            </div>
+        </section>
+
+        <section class="workspace" id="board">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Community board</p>
+                    <h2>Find your next<br><em>study circle.</em></h2>
+                </div>
+                <p class="section-intro">Real people, real questions, and a little more momentum for whatever you are learning next.</p>
+            </div>
+            <div class="board-grid">
+                <section class="composer-panel" id="share-form" aria-labelledby="composer-title">
+                    <div class="panel-heading">
+                        <span class="panel-number">01</span>
+                        <div>
+                            <p class="eyebrow">Start a conversation</p>
+                            <h2 id="composer-title">Share a notice</h2>
+                        </div>
+                    </div>
+                    <form id="postForm">
+                        <label for="userName">Your name</label>
+                        <input type="text" id="userName" name="userName" placeholder="e.g. Maya" autocomplete="name" required>
+                        <label for="subject">What are you learning?</label>
+                        <input type="text" id="subject" name="subject" placeholder="e.g. Conversational Spanish" required>
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="Languages">Languages</option>
+                            <option value="Math & Science">Math &amp; Science</option>
+                            <option value="Coding">Coding</option>
+                            <option value="Exam Prep">Exam Prep</option>
+                        </select>
+                        <div class="form-row">
+                            <div>
+                                <label for="sessionType">Session type</label>
+                                <select id="sessionType" name="sessionType" required>
+                                    <option value="In-Person">In-Person</option>
+                                    <option value="Virtual">Virtual</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="availability">Availability</label>
+                                <select id="availability" name="availability" required>
+                                    <option value="Weekends">Weekends</option>
+                                    <option value="Evenings">Evenings</option>
+                                    <option value="Flexible">Flexible</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label for="message">Your note</label>
+                        <textarea id="message" name="message" placeholder="Tell the neighborhood what you need or can share..." rows="4" required></textarea>
+                        <button class="button button-primary" type="submit">Publish notice <span aria-hidden="true">↗</span></button>
+                    </form>
+                </section>
+
+                <section class="notices-panel" aria-labelledby="notices-title">
+                    <div class="notices-heading">
+                        <div>
+                            <p class="eyebrow">Live from the neighborhood</p>
+                            <h2 id="notices-title">Active notices <span id="postCount">0</span></h2>
+                        </div>
+                        <span class="live-status"><span></span> Live</span>
+                    </div>
+                    <div class="filter-bar" role="toolbar" aria-label="Filter notices by category">
+                        <button class="filter-button is-active" type="button" data-filter="All" aria-pressed="true">All <span>0</span></button>
+                        <button class="filter-button" type="button" data-filter="Languages" aria-pressed="false">Languages</button>
+                        <button class="filter-button" type="button" data-filter="Math & Science" aria-pressed="false">Math &amp; Science</button>
+                        <button class="filter-button" type="button" data-filter="Coding" aria-pressed="false">Coding</button>
+                        <button class="filter-button" type="button" data-filter="Exam Prep" aria-pressed="false">Exam Prep</button>
+                    </div>
+                    <div id="postsContainer" class="posts-list">
+                        <div class="empty-state"><span aria-hidden="true">✦</span><p>New conversations will appear here.<br>Be the first to share what you are learning.</p></div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <span>Study Circle</span>
+        <span>Made for curious neighbors <span aria-hidden="true">✦</span></span>
+    </footer>
+
+    <div class="modal" id="loginModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="login-title">
+        <div class="modal-backdrop" data-close-login></div>
+        <section class="login-card">
+            <button class="modal-close" type="button" data-close-login aria-label="Close login">×</button>
+            <p class="eyebrow">Welcome back</p>
+            <h2 id="login-title">Keep learning<br><em>with your circle.</em></h2>
+            <form id="loginForm">
+                <label for="loginEmail">Email address</label>
+                <input id="loginEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+                <label for="loginPassword">Password</label>
+                <input id="loginPassword" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+                <div class="login-options">
+                    <label class="checkbox-label"><input type="checkbox"> <span>Remember me</span></label>
+                    <a href="#" data-forgot-password>Forgot password?</a>
+                </div>
+                <button class="button button-primary" type="submit">Log in <span aria-hidden="true">↗</span></button>
+            </form>
+            <p class="login-footnote">New to Study Circle? <a href="#" data-register>Join the community</a></p>
+        </section>
+    </div>
+
+    <div class="modal" id="contactModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+        <div class="modal-backdrop" data-close-contact></div>
+        <section class="login-card contact-card">
+            <button class="modal-close" type="button" data-close-contact aria-label="Close contact dialog">×</button>
+            <p class="eyebrow">Make an introduction</p>
+            <h2 id="contact-title">Connect with<br><em id="contactName">this learner.</em></h2>
+            <p class="contact-copy">Leave a short note and we’ll prepare a reply prompt for this study circle.</p>
+            <form id="contactForm">
+                <label for="contactMessage">Your message</label>
+                <textarea id="contactMessage" rows="4" placeholder="Hi, I would love to join your session..." required></textarea>
+                <button class="button button-primary" type="submit">Prepare reply <span aria-hidden="true">↗</span></button>
+            </form>
+        </section>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
