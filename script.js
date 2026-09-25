@@ -5,11 +5,30 @@ const postCount = document.getElementById('postCount');
 const loginModal = document.getElementById('loginModal');
 const contactModal = document.getElementById('contactModal');
 const filterButtons = document.querySelectorAll('[data-filter]');
+const themeToggle = document.getElementById('themeToggle');
 
 const notices = [];
 let activeFilter = 'All';
 let notificationTimeout;
 let contactTarget = '';
+
+function setTheme(theme) {
+    const isDark = theme === 'dark';
+    document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+    themeToggle.setAttribute('aria-pressed', String(isDark));
+    themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    themeToggle.querySelector('.theme-icon').textContent = isDark ? '☀' : '☾';
+    themeToggle.querySelector('.theme-label').textContent = isDark ? 'Light mode' : 'Dark mode';
+}
+
+const savedTheme = localStorage.getItem('study-circle-theme');
+setTheme(savedTheme === 'dark' ? 'dark' : 'light');
+
+themeToggle.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    localStorage.setItem('study-circle-theme', nextTheme);
+});
 
 document.querySelectorAll('[data-scroll-to-form]').forEach((button) => {
     button.addEventListener('click', () => {
